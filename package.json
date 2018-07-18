@@ -1,0 +1,19 @@
+{
+  "name": "ria-koa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^1.30.0",
+    "koa": "^2.5.2",
+    "koa-router": "^7.4.0",
+    "memcached": "^2.2.2"
+  }
+}
