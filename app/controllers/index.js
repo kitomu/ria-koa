@@ -41,7 +41,7 @@ module.exports = {
       //даем 201 статус и id в виде строки
       ctx.res.writeHead(201 , {"Content-Type" : "text/plain"});
       //не использовал body parser потому что есть обект query в ctx
-      ctx.body = await setItem(ctx.query , id);
+      ctx.body = await setItem(ctx.req.body , id);
 
       await next();
     }catch(err){
