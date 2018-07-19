@@ -1,5 +1,6 @@
 // Забираем промисы для мэмкэша
 const {getItem , setItem , deleteItem} = require('../managers/mem');
+const readBody = require('../helpers/readBody');
 
 //переменная для записи рандомных ключей, по ней будем проверять не существует ли ключ
 var keys = [];
@@ -33,15 +34,17 @@ module.exports = {
       let id;
       do{
         id = Math.round(Math.random() * 200);
-      }
-      while(keys.some( val => val == id));
+
+      }while(keys.some( val => val == id));
       //если есть уникальный ключ пушим в keys
       keys.push(id);
 
       //даем 201 статус и id в виде строки
       ctx.res.writeHead(201 , {"Content-Type" : "text/plain"});
-      //не использовал body parser потому что есть обект query в ctx
-      ctx.body = await setItem(ctx.req.body , id);
+      
+      //читаем тело и записываем
+        ctx.body = await setItem(`${await readBody(ctx)}` , id);
+      
 
       await next();
     }catch(err){

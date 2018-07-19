@@ -1,14 +1,13 @@
 module.exports = (app) => {
   const Router = require('koa-router');
-  const bodyParser = require('koa-bodyparser')
   const router = new Router();
 
-  const {getRecord , newRecord , deleteRecord} = require('../controllers')
+  const {getRecord , newRecord , deleteRecord} = require('../controllers');
 
 
   router
   .get('/goods/:id', getRecord)
-  .post('/goods', bodyParser() ,newRecord)
+  .post('/goods', newRecord)
   .delete('/goods/:id' , deleteRecord);
 
   app.use(router.routes())
